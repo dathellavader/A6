@@ -33,7 +33,7 @@
 
 // ------------- CODE -------------
 #include <iostream>
-
+#include <iomanip>
 using namespace std;
 
 int main(int argc, char* argv[]) {
@@ -68,7 +68,7 @@ if (coin == 0) {
     }
 
     balance_USD = balance_USD / 100;
-    cout << "Your balance is: $" << balance_USD << endl << endl;
+    cout << "\nYour balance is: $" << fixed << setprecision(2) << balance_USD << endl << endl;
 
   cout << "Please pick an option: ($0.25 each):" << endl;
   cout << "C/c: Coffee" << endl;
