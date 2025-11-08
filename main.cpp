@@ -41,9 +41,11 @@ int main(int argc, char* argv[]) {
   cout << "Welcome to my Coffee/Tea Vending Machine!" << endl;
 
   bool again = true;
-  float total_USD = 0.0;
-  float balance_USD = 0.0;
+  double total_USD = 0.0;
+  double balance_USD = 0.0;
+  char c_t_or_q = " ";
   int coin = 0;
+  int amount = 0;
 
     while(again) {
 
@@ -51,8 +53,12 @@ int main(int argc, char* argv[]) {
     cout << "Enter coins - 5, 10, or 25 only: ";
     cin >> coin;
 while (coin != 5 && coin != 10 && coin != 25 && coin != 0) {
-    cout << endl << "Invalid!" << endl;;
-    break;
+    cout << endl << "Invalid!" << endl;
+    cout << "Enter coins - 5, 10, or 25 only: ";
+    cin >> coin;
+}
+if (coin == 5 || coin == 10 || coin == 25) {
+  balance_USD += coin;
 }
 if (coin == 0) {
     again = false;
@@ -61,8 +67,35 @@ if (coin == 0) {
    } while (coin != 0);
     }
 
+    balance_USD = balance_USD / 100;
+    cout << "Your balance is: $" << balance_USD << endl << endl;
 
-  cout << "Thank you for using my Vending Machine Program!" << endl;
+  cout << "Please pick an option: ($0.25 each):" << endl;
+  cout << "C/c: Coffee" << endl;
+  cout << "T/t: Tea" << endl;
+  cout << "Q/q: Quit" << endl;
+    cin >> c_t_or_q;
+c_t_or_q = tolower(c_t_or_q);
+
+while (c_t_or_q != 'c' && c_t_or_q != 't' && c_t_or_q != 'q') {
+  cout << "Invalid Option! Please choose a valid option." << endl;
+  cout << ">>";
+  cin >> c_t_or_q;
+}
+if (c_t_or_q == 'q') {
+  cout << "Your total is: $0.00" << endl;
+  cout << "Your balance is: $" << balance_USD << endl << endl;
+  cout << "Thank your for using my Vending Machine Program!" << endl;
+}
+ else if (c_t_or_q == 'c' || c_t_or_q == 't') {
+  cout << "How many would you like? ";
+  cin >> amount;
+  total_USD = amount * 0.25;
+  balance_USD -= total_USD;
+  cout << "\nYour total is: $" << total_USD << endl;
+  cout << "Your balance is: $" << balance_USD << endl;
+  cout << "\nThank your for using my Vending Machine Program!" << endl;
+ }
 
 
   return 0;
