@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
   bool again = true;
   double total_USD = 0.0;
   double balance_USD = 0.0;
-  char c_t_or_q = " ";
+  char c_t_or_q = ' ';
   int coin = 0;
   int amount = 0;
 
