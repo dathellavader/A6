@@ -54,8 +54,8 @@ while (coin != 5 && coin != 10 && coin != 25 && coin != 0) {
     cout << endl << "Invalid!" << endl;;
     break;
 }
-if (coin != 0) {
-    again = true;
+if (coin == 0) {
+    again = false;
 }
 
    } while (coin != 0);
