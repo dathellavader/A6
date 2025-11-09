@@ -47,8 +47,7 @@ int main(int argc, char* argv[]) {
   int coin = 0;
   int amount = 0;
 
-    while(again) {
-
+while (again) {
     do {
     cout << "Enter coins - 5, 10, or 25 only: ";
     cin >> coin;
@@ -90,13 +89,29 @@ if (c_t_or_q == 'q') {
  else if (c_t_or_q == 'c' || c_t_or_q == 't') {
   cout << "How many would you like? ";
   cin >> amount;
+  bool vaild_amount = true;
   total_USD = amount * 0.25;
-  balance_USD -= total_USD;
+  }
+  else {
+    cout << "Invalid!" << endl;
+  }
+  
+  if (total_USD > balance_USD) {
+    cout << fixed << setprecision(2);
+    cout << "\nYour total is: $" << total_USD << endl;
+    cout << "Your balance is: $"  << balance_USD << endl;
+    cout << "Not enough change! Please add more coins." << endl;
+    again = true;
+  }
+  else {
+    balance_USD -= total_USD;
+  cout << fixed << setprecision(2);
   cout << "\nYour total is: $" << total_USD << endl;
   cout << "Your balance is: $" << balance_USD << endl;
   cout << "\nThank your for using my Vending Machine Program!" << endl;
+  again = false;
  }
-
+ }
 
   return 0;
 }
