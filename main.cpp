@@ -85,7 +85,7 @@ while (c_t_or_q != 'c' && c_t_or_q != 't' && c_t_or_q != 'q') {
 
 if (c_t_or_q == 'q') {
   cout << "Your total is: $0.00" << endl;
-  cout << "Your balance is: $" << balance_USD << endl << endl;
+  cout << "Your balance is: $" << balance_USD / 100 << endl << endl;
   cout << "Thank your for using my Vending Machine Program!" << endl;
   exit(1);
 }
