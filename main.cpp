@@ -43,7 +43,6 @@ int main(int argc, char* argv[]) {
   bool again = true;
   double total_USD = 0.0;
   double balance_USD = 0.0;
-  double extra_balance = 0.0;
   char c_t_or_q = ' ';
   int coin = 0;
   int amount = 0;
@@ -108,7 +107,7 @@ if (c_t_or_q == 'q') {
   balance_USD -= total_USD;
   cout << fixed << setprecision(2);
   cout << "\nYour total is: $" << total_USD << endl;
-  cout << "Your balance is: $" << extra_balance << endl;
+  cout << "Your balance is: $" << balance_USD << endl;
   cout << "\nThank your for using my Vending Machine Program!" << endl;
   again = false;
 
