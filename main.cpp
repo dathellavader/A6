@@ -66,8 +66,7 @@ if (coin == 0) {
    } while (coin != 0);
   
 
-    balance_USD = balance_USD / 100;
-    cout << "\nYour balance is: $" << fixed << setprecision(2) << balance_USD << endl << endl;
+    cout << "\nYour balance is: $" << fixed << setprecision(2) << (balance_USD / 100) << endl << endl;
 
   cout << "Please pick an option: ($0.25 each):" << endl;
   cout << "C/c: Coffee" << endl;
@@ -98,12 +97,12 @@ if (c_t_or_q == 'q') {
     total_USD = amount * 0.25;
 
 
-  if (total_USD > balance_USD) {
+  if (total_USD > balance_USD / 100) {
     cout << "Not enough change! Please add more coins." << endl;
     again = true;
   }
 }
-
+  balance_USD = balance_USD / 100;
   balance_USD -= total_USD;
   cout << fixed << setprecision(2);
   cout << "\nYour total is: $" << total_USD << endl;
