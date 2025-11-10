@@ -98,6 +98,8 @@ if (c_t_or_q == 'q') {
 
 
   if (total_USD > balance_USD / 100) {
+    cout << "Your total is: $" << total_USD << endl;
+    cout << "Your balance is: $" << balance_USD / 100 << endl;
     cout << "Not enough change! Please add more coins." << endl;
     again = true;
   }
