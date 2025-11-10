@@ -64,7 +64,7 @@ if (coin == 0) {
 }
 
    } while (coin != 0);
-    }
+  
 
     balance_USD = balance_USD / 100;
     cout << "\nYour balance is: $" << fixed << setprecision(2) << balance_USD << endl << endl;
@@ -80,22 +80,24 @@ while (c_t_or_q != 'c' && c_t_or_q != 't' && c_t_or_q != 'q') {
   cout << "Invalid Option! Please choose a valid option." << endl;
   cout << ">>";
   cin >> c_t_or_q;
+  c_t_or_q = tolower(c_t_or_q);
 }
+
+
 if (c_t_or_q == 'q') {
   cout << "Your total is: $0.00" << endl;
   cout << "Your balance is: $" << balance_USD << endl << endl;
   cout << "Thank your for using my Vending Machine Program!" << endl;
+  exit(1);
 }
  else if (c_t_or_q == 'c' || c_t_or_q == 't') {
   cout << "How many would you like? ";
   cin >> amount;
-  bool vaild_amount = true;
-  total_USD = amount * 0.25;
-  }
-  else {
-    cout << "Invalid!" << endl;
   }
   
+    total_USD = amount * 0.25;
+
+
   if (total_USD > balance_USD) {
     cout << fixed << setprecision(2);
     cout << "\nYour total is: $" << total_USD << endl;
@@ -103,15 +105,15 @@ if (c_t_or_q == 'q') {
     cout << "Not enough change! Please add more coins." << endl;
     again = true;
   }
-  else {
+}
+
     balance_USD -= total_USD;
   cout << fixed << setprecision(2);
   cout << "\nYour total is: $" << total_USD << endl;
   cout << "Your balance is: $" << balance_USD << endl;
   cout << "\nThank your for using my Vending Machine Program!" << endl;
   again = false;
- }
- }
+
 
   return 0;
 }
