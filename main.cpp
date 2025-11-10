@@ -28,7 +28,7 @@
 
 // ------------- TESTING -------------
 // PASS ALL GIVEN SAMPLE RUN TESTS ✅: 
-// (Optional) Additional tests count:   
+// (Optional) Additional tests count: 4  
 
 
 // ------------- CODE -------------
@@ -42,106 +42,175 @@ int main(int argc, char* argv[]) {
 
   bool again = true;
   double total_USD = 0.0;
-  double balance_USD = 0.0;
+  double balance_USD = 0.0; // balance in cents
   char c_t_or_q = ' ';
   int coin = 0;
   int amount = 0;
 
-while (again) {
+  while (again) {
+    // Coin input
     do {
-    cout << "Enter coins - 5, 10, or 25 only: ";
-    cin >> coin;
-while (coin != 5 && coin != 10 && coin != 25 && coin != 0) {
-    cout << endl << "Invalid!" << endl;
-    cout << "Enter coins - 5, 10, or 25 only: ";
-    cin >> coin;
-}
-if (coin == 5 || coin == 10 || coin == 25) {
-  balance_USD += coin;
-}
-if (coin == 0) {
-    again = false;
-}
-
-   } while (coin != 0);
-  
+        cout << "Enter coins - 5, 10, or 25 only: ";
+        cin >> coin;
+        while (coin != 5 && coin != 10 && coin != 25 && coin != 0) {
+            cout << endl << "Invalid!" << endl;
+            cout << "Enter coins - 5, 10, or 25 only: ";
+            cin >> coin;
+        }
+        if (coin == 5 || coin == 10 || coin == 25) {
+            balance_USD += coin;
+        }
+        if (coin == 0) {
+            again = false;
+        }
+    } while (coin != 0);
 
     cout << "\nYour balance is: $" << fixed << setprecision(2) << (balance_USD / 100) << endl << endl;
 
-  cout << "Please pick an option: ($0.25 each):" << endl;
-  cout << "C/c: Coffee" << endl;
-  cout << "T/t: Tea" << endl;
-  cout << "Q/q: Quit" << endl;
+    
+    cout << "Please pick an option: ($0.25 each):" << endl;
+    cout << "C/c: Coffee" << endl;
+    cout << "T/t: Tea" << endl;
+    cout << "Q/q: Quit" << endl;
     cin >> c_t_or_q;
-c_t_or_q = tolower(c_t_or_q);
+    c_t_or_q = tolower(c_t_or_q);
 
-while (c_t_or_q != 'c' && c_t_or_q != 't' && c_t_or_q != 'q') {
-  cout << "Invalid Option! Please choose a valid option." << endl;
-  cout << ">>";
-  cin >> c_t_or_q;
-  c_t_or_q = tolower(c_t_or_q);
-}
+    while (c_t_or_q != 'c' && c_t_or_q != 't' && c_t_or_q != 'q') {
+        cout << "Invalid Option! Please choose a valid option." << endl;
+        cout << ">> ";
+        cin >> c_t_or_q;
+        c_t_or_q = tolower(c_t_or_q);
+    }
 
+    if (c_t_or_q == 'q') {
+        again = false;
+    }
+    else if (c_t_or_q == 'c' || c_t_or_q == 't') {
+        amount = 0;
+        while (amount <= 0) {
+            cout << "How many would you like? ";
+            cin >> amount;
+            if (amount <= 0) {
+                cout << "Invalid input! Amount must be positive." << endl;
+            }
+        }
+    }
 
-if (c_t_or_q == 'q') {
-  cout << "Your total is: $0.00" << endl;
-  cout << "Your balance is: $" << balance_USD / 100 << endl << endl;
-  cout << "Thank your for using my Vending Machine Program!" << endl;
-  exit(1);
-}
- else if (c_t_or_q == 'c' || c_t_or_q == 't') {
-  cout << "How many would you like? ";
-  cin >> amount;
-  }
-  
     total_USD = amount * 0.25;
 
-
-  if (total_USD > balance_USD / 100) {
-    cout << "Your total is: $" << total_USD << endl;
-    cout << "Your balance is: $" << balance_USD / 100 << endl;
-    cout << "Not enough change! Please add more coins." << endl;
-    again = true;
+    
+    if (total_USD > balance_USD / 100) {
+        cout << "Your total is: $" << total_USD << endl;
+        cout << "Your balance is: $" << fixed << setprecision(2) << (balance_USD / 100) << endl;
+        cout << "Not enough change! Please add more coins." << endl;
+        again = true;
+    }
   }
-}
-  balance_USD = balance_USD / 100;
-  balance_USD -= total_USD;
+
+  balance_USD = (balance_USD / 100) - total_USD;
   cout << fixed << setprecision(2);
   cout << "\nYour total is: $" << total_USD << endl;
   cout << "Your balance is: $" << balance_USD << endl;
-  cout << "\nThank your for using my Vending Machine Program!" << endl;
-  again = false;
-
+  cout << "\nThank you for using my Vending Machine Program!" << endl;
 
   return 0;
 }
+
+
+
 
 // Function implementations (if any)
 
 
 // ------------- DESIGN -------------
 /* 
-Program Name:
+Program Name: Coffee/Tea Vending Machine
 
 Program Description:
 
 Design:
 A. INPUT
-Define the input variables including name data type. 
+int coin
+char c_t_or_q
+int amount
 
 B. OUTPUT
-Define the output variables including data types. 
+double balance_USD
+double total_USD
 
 C. CALCULATIONS
-Describe calculations used by algorithms in step D.  
-List all formulas. 
-If there are no calculations needed, state there are no calculations.
+total_USD = amount * 0.25
+balance_USD = (balance_USD / 100) - total_USD
+
 
 D. LOGIC and ALGORITHMS
-Design the logic of your program using pseudocode or flowcharts. 
-Use conditionals, loops, functions or array constructs.
-List the steps in transforming inputs into outputs. 
-https://github.com/Glen-Sasek-PCC-Instructor/2025-06-22/blob/main/Pseudocode-Reference.txt
+MESSAGE "Welcome to my Coffee/Tea Vending Machine!"
+
+SET again = true
+
+WHILE (again) {
+    
+    DO {
+        PROMPT "Enter coins - 5, 10, or 25 only: "
+        INPUT coin
+        while (coin != 5 AND coin != 10 AND coin != 25 AND coin != 0) {
+            DISPLAY "Invalid!"
+            PROMPT "Enter coins - 5, 10, or 25 only: "
+            INPUT coin
+        }
+        IF (coin == 5 OR coin == 10 OR coin == 25) {
+            balance_USD = balance_USD + coin
+        }
+        IF (coin == 0) {
+            again = false
+        }
+    } while (coin != 0)
+
+    DISPLAY "Your balance is: $" << (balance_USD / 100)
+
+    PROMPT "Please pick an option: ($0.25 each):"
+    DISPLAY "C/c: Coffee"
+    DISPLAY "T/t: Tea"
+    DISPLAY "Q/q: Quit"
+    INPUT c_t_or_q
+    c_t_or_q = tolower(c_t_or_q)
+
+    while (c_t_or_q != 'c' AND c_t_or_q != 't' AND c_t_or_q != 'q') {
+        DISPLAY "Invalid Option! Please choose a valid option."
+        INPUT c_t_or_q
+        c_t_or_q = tolower(c_t_or_q)
+    }
+
+    IF (c_t_or_q == 'q') {
+        again = false
+    }
+    ELSE IF (c_t_or_q == 'c' OR c_t_or_q == 't') {
+        SET amount = 0
+        while (amount <= 0) {
+            PROMPT "How many would you like? "
+            INPUT amount
+            IF (amount <= 0) {
+                DISPLAY "Invalid input! Amount must be positive."
+            }
+        }
+    }
+
+    // do total calculation
+
+    IF (total_USD > (balance_USD / 100)) {
+        DISPLAY "Your total is: $" << total_USD
+        DISPLAY "Your balance is: $" << (balance_USD / 100)
+        DISPLAY "Not enough change! Please add more coins."
+        again = true
+    }
+}
+
+// do balance calculation
+
+DISPLAY "Your total is: $" << total_USD
+DISPLAY "Your balance is: $" << balance_USD
+MESSAGE "Thank you for using my Vending Machine Program!"
+
 
 
 SAMPLE RUNS
